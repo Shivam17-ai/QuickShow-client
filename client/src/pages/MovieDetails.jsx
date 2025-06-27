@@ -86,7 +86,7 @@ const MovieDetails = () => {
                 <button onClick={() => {navigate('/movies'); scrollTo(0,0)}} className='px-10 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-md font-medium cursor-pointer'>Show More</button>
            </div>
         </div>
-    ) : <Loading />
+    ) : <div>Loading...</div> //<Loading />
 };
 
 export default MovieDetails;
