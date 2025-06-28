@@ -1,5 +1,7 @@
-import { Inngest, models } from "inngest";
-import Users from "../models/user.js";
+import { Inngest } from 'inngest';
+import User from '../models/user.js'; // Import your User model
+import mongoose from 'mongoose';
+
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "movie-ticket-booking" });
 
