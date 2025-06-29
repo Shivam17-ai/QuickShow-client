@@ -5,10 +5,13 @@ import { Star } from "lucide-react";
 import { kConverter } from "../../lib/kConverter";
 import Title from "../../components/admin/Title";
 import { CheckIcon } from "lucide-react";
+import { useAppContext } from "../../context/AppContext";
 
 const AddShows = () => {
-  const currency = import.meta.env.VITE_CURRENCY;
 
+  const{axios,getToken,user}=useAppContext
+
+  const currency = import.meta.env.VITE_CURRENCY;
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [dateTimeSelection, setDateTimeSelection] = useState({});
@@ -16,9 +19,17 @@ const AddShows = () => {
   const [showPrice, setShowPrice] = useState("");
 
   const fetchNowPlayingMovies = async () => {
-    // Replace dummyShowsData with actual API call if needed.
-    setNowPlayingMovies(dummyShowsData);
-  };
+    try {
+        const { data } = await axios.get('/api/show/now-playing', {
+            headers: { Authorization: `Bearer ${await getToken()}` }
+        })
+        if (data.success) {
+            setNowPlayingMovies(data.movies)
+        }
+    } catch (error) {
+        console.error('Error fetching movies:', error)
+    }
+  }
 
   const handleDateTimeAdd = () => {
     if (!dateTimeInput) {
