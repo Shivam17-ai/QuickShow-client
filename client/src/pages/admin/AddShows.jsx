@@ -9,7 +9,7 @@ import { useAppContext } from "../../context/AppContext";
 
 const AddShows = () => {
 
-  const{axios,getToken,user}=useAppContext()
+  const{axios,getToken,user,image_base_url}=useAppContext()
 
   const currency = import.meta.env.VITE_CURRENCY;
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
@@ -72,8 +72,11 @@ const AddShows = () => {
   };
 
   useEffect(() => {
-    fetchNowPlayingMovies();
-  }, []);
+    if(user){
+      fetchNowPlayingMovies();
+    }
+    
+  }, [user]);
 
   return nowPlayingMovies.length > 0 ? (
     <div className="p-6 bg-black text-white min-h-screen">
@@ -92,7 +95,7 @@ const AddShows = () => {
             onClick={() => setSelectedMovie(movie.id)}
           >
             <img
-              src={movie.poster_path || "/default.jpg"}
+              src={ima+movie.poster_path || "/default.jpg"}
               alt={movie.title || "Movie Poster"}
               className="rounded-t-lg w-full object-cover h-[300px] brightness-90"
             />
