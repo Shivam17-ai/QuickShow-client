@@ -9,7 +9,7 @@ import { useAppContext } from "../../context/AppContext";
 
 const AddShows = () => {
 
-  const{axios,getToken,user}=useAppContext
+  const{axios,getToken,user}=useAppContext()
 
   const currency = import.meta.env.VITE_CURRENCY;
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);

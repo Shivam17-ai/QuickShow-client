@@ -21,6 +21,7 @@ function App() {
   const isAdminRoute = useLocation().pathname.startsWith('/admin')
 
   const { user } = useAppContext()
+  
 
   return (
     <>
